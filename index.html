@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalcSphere - Modern Calculator Suite</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <div class="logo-circle">
+                        <div class="logo-inner">
+                            <span class="logo-calc">C</span>
+                            <div class="logo-dots">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="logo-text">
+                    <h1>Calc<span class="logo-accent">Sphere</span></h1>
+                    <div class="logo-subtitle">Modern Calculator Suite</div>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <button class="nav-btn active" data-page="home">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </button>
+                <button class="nav-btn" data-page="about">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </button>
+                <button id="themeToggle" class="theme-toggle" title="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </header>
+
+        <!-- Main Content Pages -->
+        <main class="main-content">
+            <!-- Home Page -->
+            <div class="page active" id="home-page">
+                <!-- Calculator Type Selector -->
+                <div class="calculator-selector">
+                    <button class="calc-type-btn active" data-type="basic">
+                        <i class="fas fa-calculator"></i>
+                        <span>Basic</span>
+                    </button>
+                    <button class="calc-type-btn" data-type="scientific">
+                        <i class="fas fa-flask"></i>
+                        <span>Scientific</span>
+                    </button>
+                    <button class="calc-type-btn" data-type="programmer">
+                        <i class="fas fa-code"></i>
+                        <span>Programmer</span>
+                    </button>
+                    <button class="calc-type-btn" data-type="finance">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Finance</span>
+                    </button>
+                    <button class="calc-type-btn" data-type="advanced">
+                        <i class="fas fa-infinity"></i>
+                        <span>Advanced</span>
+                    </button>
+                    <button class="calc-type-btn" data-type="tools">
+                        <i class="fas fa-tools"></i>
+                        <span>Tools</span>
+                    </button>
+                </div>
+
+                <div class="calculator-container">
+            <!-- Main Calculator Display -->
+            <div class="calculator">
+                <div class="display-container">
+                    <div class="display" id="display">0</div>
+                    <div class="expression" id="expression"></div>
+                </div>
+
+                <!-- Basic Calculator -->
+                <div class="calc-panel active" id="basic-calc">
+                    <div class="button-grid">
+                        <button class="btn btn-function" data-action="clear">C</button>
+                        <button class="btn btn-function" data-action="clear-entry">CE</button>
+                        <button class="btn btn-function" data-action="backspace">
+                            <i class="fas fa-backspace"></i>
+                        </button>
+                        <button class="btn btn-operator" data-action="divide">÷</button>
+                        
+                        <button class="btn btn-number" data-number="7">7</button>
+                        <button class="btn btn-number" data-number="8">8</button>
+                        <button class="btn btn-number" data-number="9">9</button>
+                        <button class="btn btn-operator" data-action="multiply">×</button>
+                        
+                        <button class="btn btn-number" data-number="4">4</button>
+                        <button class="btn btn-number" data-number="5">5</button>
+                        <button class="btn btn-number" data-number="6">6</button>
+                        <button class="btn btn-operator" data-action="subtract">-</button>
+                        
+                        <button class="btn btn-number" data-number="1">1</button>
+                        <button class="btn btn-number" data-number="2">2</button>
+                        <button class="btn btn-number" data-number="3">3</button>
+                        <button class="btn btn-operator" data-action="add">+</button>
+                        
+                        <button class="btn btn-number btn-zero" data-number="0">0</button>
+                        <button class="btn btn-number" data-number=".">.</button>
+                        <button class="btn btn-equals" data-action="equals">=</button>
+                    </div>
+                </div>
+
+                <!-- Scientific Calculator -->
+                <div class="calc-panel" id="scientific-calc">
+                    <div class="button-grid scientific">
+                        <button class="btn btn-function" data-action="clear">C</button>
+                        <button class="btn btn-function" data-action="clear-entry">CE</button>
+                        <button class="btn btn-function" data-action="backspace">
+                            <i class="fas fa-backspace"></i>
+                        </button>
+                        <button class="btn btn-operator" data-action="divide">÷</button>
+                        
+                        <button class="btn btn-function" data-action="sin" title="Sine">sin</button>
+                        <button class="btn btn-function" data-action="cos" title="Cosine">cos</button>
+                        <button class="btn btn-function" data-action="tan" title="Tangent">tan</button>
+                        <button class="btn btn-operator" data-action="multiply">×</button>
+                        
+                        <button class="btn btn-function" data-action="asin" title="Arc Sine">sin⁻¹</button>
+                        <button class="btn btn-function" data-action="acos" title="Arc Cosine">cos⁻¹</button>
+                        <button class="btn btn-function" data-action="atan" title="Arc Tangent">tan⁻¹</button>
+                        <button class="btn btn-operator" data-action="subtract">-</button>
+                        
+                        <button class="btn btn-function" data-action="log" title="Logarithm base 10">log</button>
+                        <button class="btn btn-function" data-action="ln" title="Natural logarithm">ln</button>
+                        <button class="btn btn-function" data-action="sqrt" title="Square root">√</button>
+                        <button class="btn btn-operator" data-action="add">+</button>
+                        
+                        <button class="btn btn-function" data-action="pow" title="Power">x^y</button>
+                        <button class="btn btn-function" data-action="factorial" title="Factorial">x!</button>
+                        <button class="btn btn-function" data-action="pi" title="Pi">π</button>
+                        <button class="btn btn-equals" data-action="equals">=</button>
+                        
+                        <button class="btn btn-number" data-number="7">7</button>
+                        <button class="btn btn-number" data-number="8">8</button>
+                        <button class="btn btn-number" data-number="9">9</button>
+                        <button class="btn btn-function" data-action="open-paren">(</button>
+                        
+                        <button class="btn btn-number" data-number="4">4</button>
+                        <button class="btn btn-number" data-number="5">5</button>
+                        <button class="btn btn-number" data-number="6">6</button>
+                        <button class="btn btn-function" data-action="close-paren">)</button>
+                        
+                        <button class="btn btn-number" data-number="1">1</button>
+                        <button class="btn btn-number" data-number="2">2</button>
+                        <button class="btn btn-number" data-number="3">3</button>
+                        <button class="btn btn-function" data-action="exp" title="Exponential">e^x</button>
+                        
+                        <button class="btn btn-number btn-zero" data-number="0">0</button>
+                        <button class="btn btn-number" data-number=".">.</button>
+                        <button class="btn btn-function" data-action="abs" title="Absolute value">|x|</button>
+                        <button class="btn btn-function" data-action="negate" title="Negate">±</button>
+                    </div>
+                </div>
+
+                <!-- Programmer Calculator -->
+                <div class="calc-panel" id="programmer-calc">
+                    <div class="number-base-selector">
+                        <button class="base-btn active" data-base="dec">DEC</button>
+                        <button class="base-btn" data-base="hex">HEX</button>
+                        <button class="base-btn" data-base="bin">BIN</button>
+                        <button class="base-btn" data-base="oct">OCT</button>
+                    </div>
+                    <div class="button-grid programmer">
+                        <button class="btn btn-function" data-action="clear">C</button>
+                        <button class="btn btn-function" data-action="clear-entry">CE</button>
+                        <button class="btn btn-function" data-action="backspace">
+                            <i class="fas fa-backspace"></i>
+                        </button>
+                        <button class="btn btn-operator" data-action="divide">÷</button>
+                        
+                        <button class="btn btn-function" data-action="and" title="Bitwise AND">AND</button>
+                        <button class="btn btn-function" data-action="or" title="Bitwise OR">OR</button>
+                        <button class="btn btn-function" data-action="xor" title="Bitwise XOR">XOR</button>
+                        <button class="btn btn-operator" data-action="multiply">×</button>
+                        
+                        <button class="btn btn-function" data-action="not" title="Bitwise NOT">NOT</button>
+                        <button class="btn btn-function" data-action="lshift" title="Left shift"><<</button>
+                        <button class="btn btn-function" data-action="rshift" title="Right shift">>></button>
+                        <button class="btn btn-operator" data-action="subtract">-</button>
+                        
+                        <button class="btn btn-function" data-action="mod" title="Modulo">MOD</button>
+                        <button class="btn btn-function" data-action="pow" title="Power">x^y</button>
+                        <button class="btn btn-function" data-action="sqrt" title="Square root">√</button>
+                        <button class="btn btn-operator" data-action="add">+</button>
+                        
+                        <button class="btn btn-number" data-number="7">7</button>
+                        <button class="btn btn-number" data-number="8">8</button>
+                        <button class="btn btn-number" data-number="9">9</button>
+                        <button class="btn btn-function" data-action="open-paren">(</button>
+                        
+                        <button class="btn btn-number" data-number="4">4</button>
+                        <button class="btn btn-number" data-number="5">5</button>
+                        <button class="btn btn-number" data-number="6">6</button>
+                        <button class="btn btn-function" data-action="close-paren">)</button>
+                        
+                        <button class="btn btn-number" data-number="1">1</button>
+                        <button class="btn btn-number" data-number="2">2</button>
+                        <button class="btn btn-number" data-number="3">3</button>
+                        <button class="btn btn-function" data-action="equals">=</button>
+                        
+                        <button class="btn btn-number btn-zero" data-number="0">0</button>
+                        <button class="btn btn-number" data-number=".">.</button>
+                        <button class="btn btn-function" data-action="negate" title="Negate">±</button>
+                        <button class="btn btn-function" data-action="clear">C</button>
+                    </div>
+                </div>
+
+                <!-- Finance Calculator -->
+                <div class="calc-panel" id="finance-calc">
+                    <div class="finance-tabs">
+                        <button class="finance-tab active" data-tab="loan">Loan</button>
+                        <button class="finance-tab" data-tab="investment">Investment</button>
+                        <button class="finance-tab" data-tab="compound">Compound</button>
+                    </div>
+                    
+                    <div class="finance-content">
+                        <div class="finance-tab-content active" id="loan-tab">
+                            <div class="input-group">
+                                <label>Principal Amount ($)</label>
+                                <input type="number" id="principal" placeholder="Enter principal">
+                            </div>
+                            <div class="input-group">
+                                <label>Interest Rate (%)</label>
+                                <input type="number" id="interest-rate" placeholder="Enter rate">
+                            </div>
+                            <div class="input-group">
+                                <label>Loan Term (years)</label>
+                                <input type="number" id="loan-term" placeholder="Enter term">
+                            </div>
+                            <button class="btn btn-calculate" data-action="calculate-loan">Calculate</button>
+                            <div class="result" id="loan-result"></div>
+                        </div>
+                        
+                        <div class="finance-tab-content" id="investment-tab">
+                            <div class="input-group">
+                                <label>Initial Investment ($)</label>
+                                <input type="number" id="initial-investment" placeholder="Enter amount">
+                            </div>
+                            <div class="input-group">
+                                <label>Monthly Contribution ($)</label>
+                                <input type="number" id="monthly-contribution" placeholder="Enter contribution">
+                            </div>
+                            <div class="input-group">
+                                <label>Expected Return (%)</label>
+                                <input type="number" id="expected-return" placeholder="Enter return rate">
+                            </div>
+                            <div class="input-group">
+                                <label>Investment Period (years)</label>
+                                <input type="number" id="investment-period" placeholder="Enter period">
+                            </div>
+                            <button class="btn btn-calculate" data-action="calculate-investment">Calculate</button>
+                            <div class="result" id="investment-result"></div>
+                        </div>
+                        
+                        <div class="finance-tab-content" id="compound-tab">
+                            <div class="input-group">
+                                <label>Principal ($)</label>
+                                <input type="number" id="compound-principal" placeholder="Enter principal">
+                            </div>
+                            <div class="input-group">
+                                <label>Interest Rate (%)</label>
+                                <input type="number" id="compound-rate" placeholder="Enter rate">
+                            </div>
+                            <div class="input-group">
+                                <label>Time (years)</label>
+                                <input type="number" id="compound-time" placeholder="Enter time">
+                            </div>
+                            <div class="input-group">
+                                <label>Compounding Frequency</label>
+                                <select id="compound-frequency">
+                                    <option value="1">Annually</option>
+                                    <option value="2">Semi-annually</option>
+                                    <option value="4">Quarterly</option>
+                                    <option value="12">Monthly</option>
+                                    <option value="365">Daily</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-calculate" data-action="calculate-compound">Calculate</button>
+                            <div class="result" id="compound-result"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Calculator -->
+                <div class="calc-panel" id="advanced-calc">
+                    <div class="button-grid advanced">
+                        <button class="btn btn-function" data-action="clear">C</button>
+                        <button class="btn btn-function" data-action="clear-entry">CE</button>
+                        <button class="btn btn-function" data-action="backspace">
+                            <i class="fas fa-backspace"></i>
+                        </button>
+                        <button class="btn btn-operator" data-action="divide">÷</button>
+                        
+                        <button class="btn btn-function" data-action="sin" title="Sine">sin</button>
+                        <button class="btn btn-function" data-action="cos" title="Cosine">cos</button>
+                        <button class="btn btn-function" data-action="tan" title="Tangent">tan</button>
+                        <button class="btn btn-operator" data-action="multiply">×</button>
+                        
+                        <button class="btn btn-function" data-action="asin" title="Arc Sine">sin⁻¹</button>
+                        <button class="btn btn-function" data-action="acos" title="Arc Cosine">cos⁻¹</button>
+                        <button class="btn btn-function" data-action="atan" title="Arc Tangent">tan⁻¹</button>
+                        <button class="btn btn-operator" data-action="subtract">-</button>
+                        
+                        <button class="btn btn-function" data-action="log" title="Logarithm base 10">log</button>
+                        <button class="btn btn-function" data-action="ln" title="Natural logarithm">ln</button>
+                        <button class="btn btn-function" data-action="sqrt" title="Square root">√</button>
+                        <button class="btn btn-operator" data-action="add">+</button>
+                        
+                        <button class="btn btn-function" data-action="pow" title="Power">x^y</button>
+                        <button class="btn btn-function" data-action="factorial" title="Factorial">x!</button>
+                        <button class="btn btn-function" data-action="pi" title="Pi">π</button>
+                        <button class="btn btn-equals" data-action="equals">=</button>
+                        
+                        <button class="btn btn-function" data-action="integrate" title="Integrate">∫</button>
+                        <button class="btn btn-function" data-action="derivative" title="Derivative">d/dx</button>
+                        <button class="btn btn-function" data-action="limit" title="Limit">lim</button>
+                        <button class="btn btn-function" data-action="sum" title="Sum">Σ</button>
+                        
+                        <button class="btn btn-number" data-number="7">7</button>
+                        <button class="btn btn-number" data-number="8">8</button>
+                        <button class="btn btn-number" data-number="9">9</button>
+                        <button class="btn btn-function" data-action="open-paren">(</button>
+                        
+                        <button class="btn btn-number" data-number="4">4</button>
+                        <button class="btn btn-number" data-number="5">5</button>
+                        <button class="btn btn-number" data-number="6">6</button>
+                        <button class="btn btn-function" data-action="close-paren">)</button>
+                        
+                        <button class="btn btn-number" data-number="1">1</button>
+                        <button class="btn btn-number" data-number="2">2</button>
+                        <button class="btn btn-number" data-number="3">3</button>
+                        <button class="btn btn-function" data-action="exp" title="Exponential">e^x</button>
+                        
+                        <button class="btn btn-number btn-zero" data-number="0">0</button>
+                        <button class="btn btn-number" data-number=".">.</button>
+                        <button class="btn btn-function" data-action="abs" title="Absolute value">|x|</button>
+                        <button class="btn btn-function" data-action="negate" title="Negate">±</button>
+                    </div>
+                </div>
+
+                <!-- Tools Calculator -->
+                <div class="calc-panel" id="tools-calc">
+                    <div class="tools-tabs">
+                        <button class="tools-tab active" data-tab="geometry">Geometry</button>
+                        <button class="tools-tab" data-tab="health">Health</button>
+                        <button class="tools-tab" data-tab="conversion">Conversion</button>
+                        <button class="tools-tab" data-tab="time">Time</button>
+                    </div>
+                    
+                    <div class="tools-content">
+                        <!-- Geometry Tab -->
+                        <div class="tools-tab-content active" id="geometry-tab">
+                            <div class="tool-section">
+                                <h4><i class="fas fa-square"></i> Rectangle</h4>
+                                <div class="input-group">
+                                    <label>Length (cm)</label>
+                                    <input type="number" id="rect-length" placeholder="Enter length">
+                                </div>
+                                <div class="input-group">
+                                    <label>Width (cm)</label>
+                                    <input type="number" id="rect-width" placeholder="Enter width">
+                                </div>
+                                <button class="btn btn-calculate" data-action="calculate-rectangle">Calculate</button>
+                                <div class="result" id="rect-result"></div>
+                            </div>
+
+                            <div class="tool-section">
+                                <h4><i class="fas fa-circle"></i> Circle</h4>
+                                <div class="input-group">
+                                    <label>Radius (cm)</label>
+                                    <input type="number" id="circle-radius" placeholder="Enter radius">
+                                </div>
+                                <button class="btn btn-calculate" data-action="calculate-circle">Calculate</button>
+                                <div class="result" id="circle-result"></div>
+                            </div>
+
+                            <div class="tool-section">
+                                <h4><i class="fas fa-triangle"></i> Triangle</h4>
+                                <div class="input-group">
+                                    <label>Base (cm)</label>
+                                    <input type="number" id="tri-base" placeholder="Enter base">
+                                </div>
+                                <div class="input-group">
+                                    <label>Height (cm)</label>
+                                    <input type="number" id="tri-height" placeholder="Enter height">
+                                </div>
+                                <button class="btn btn-calculate" data-action="calculate-triangle">Calculate</button>
+                                <div class="result" id="tri-result"></div>
+                            </div>
+
+                            <div class="tool-section">
+                                <h4><i class="fas fa-cube"></i> Cube</h4>
+                                <div class="input-group">
+                                    <label>Side Length (cm)</label>
+                                    <input type="number" id="cube-side" placeholder="Enter side length">
+                                </div>
+                                <button class="btn btn-calculate" data-action="calculate-cube">Calculate</button>
+                                <div class="result" id="cube-result"></div>
+                            </div>
+
+                            <div class="tool-section">
+                                <h4><i class="fas fa-circle-notch"></i> Sphere</h4>
+                                <div class="input-group">
+                                    <label>Radius (cm)</label>
+                                    <input type="number" id="sphere-radius" placeholder="Enter radius">
+                                </div>
+                                <button class="btn btn-calculate" data-action="calculate-sphere">Calculate</button>
+                                <div class="result" id="sphere-result"></div>
+                            </div>
+                        </div>
+
+                        <!-- Health Tab -->
+                        <div class="tools-tab-content" id="health-tab">
+                            <div class="tool-section">
+                                <h4><i class="fas fa-weight"></i> BMI Calculator</h4>
+                                <div class="input-group">
+                                    <label>Weight (kg)</label>
+                                    <input type="number" id="bmi-weight" placeholder="Enter weight">
+                                </div>
+                                <div class="input-group">
+                                    <label>Height (cm)</label>
+                                    <input type="number" id="bmi-height" placeholder="Enter height">
+                                </div>
+                                <button class="btn btn-calculate" data-action="calculate-bmi">Calculate BMI</button>
+                                <div class="result" id="bmi-result"></div>
+                            </div>
+
+                            <div class="tool-section">
+                                <h4><i class="fas fa-heartbeat"></i> Body Fat Percentage</h4>
+                                <div class="input-group">
+                                    <label>Weight (kg)</label>
+                                    <input type="number" id="bf-weight" placeholder="Enter weight">
+                                </div>
+                                <div class="input-group">
+                                    <label>Height (cm)</label>
+                                    <input type="number" id="bf-height" placeholder="Enter height">
+                                </div>
+                                <div class="input-group">
+                                    <label>Age (years)</label>
+                                    <input type="number" id="bf-age" placeholder="Enter age">
+                                </div>
+                                <div class="input-group">
+                                    <label>Gender</label>
+                                    <select id="bf-gender">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-calculate" data-action="calculate-bodyfat">Calculate</button>
+                                <div class="result" id="bf-result"></div>
+                            </div>
+
+                            <div class="tool-section">
+                                <h4><i class="fas fa-running"></i> Calorie Burn</h4>
+                                <div class="input-group">
+                                    <label>Weight (kg)</label>
+                                    <input type="number" id="cal-weight" placeholder="Enter weight">
+                                </div>
+                                <div class="input-group">
+                                    <label>Activity Duration (minutes)</label>
+                                    <input type="number" id="cal-duration" placeholder="Enter duration">
+                                </div>
+                                <div class="input-group">
+                                    <label>Activity Type</label>
+                                    <select id="cal-activity">
+                                        <option value="walking">Walking (3.5 mph)</option>
+                                        <option value="running">Running (6 mph)</option>
+                                        <option value="cycling">Cycling (12 mph)</option>
+                                        <option value="swimming">Swimming</option>
+                                        <option value="gym">Gym Workout</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-calculate" data-action="calculate-calories">Calculate</button>
+                                <div class="result" id="cal-result"></div>
+                            </div>
+                        </div>
+
+                        <!-- Conversion Tab -->
+                        <div class="tools-tab-content" id="conversion-tab">
+                            <div class="tool-section">
+                                <h4><i class="fas fa-ruler"></i> Length Conversion</h4>
+                                <div class="input-group">
+                                    <label>Value</label>
+                                    <input type="number" id="length-value" placeholder="Enter value">
+                                </div>
+                                <div class="input-group">
+                                    <label>From</label>
+                                    <select id="length-from">
+                                        <option value="mm">Millimeters (mm)</option>
+                                        <option value="cm">Centimeters (cm)</option>
+                                        <option value="m">Meters (m)</option>
+                                        <option value="km">Kilometers (km)</option>
+                                        <option value="in">Inches (in)</option>
+                                        <option value="ft">Feet (ft)</option>
+                                        <option value="yd">Yards (yd)</option>
+                                        <option value="mi">Miles (mi)</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label>To</label>
+                                    <select id="length-to">
+                                        <option value="mm">Millimeters (mm)</option>
+                                        <option value="cm">Centimeters (cm)</option>
+                                        <option value="m">Meters (m)</option>
+                                        <option value="km">Kilometers (km)</option>
+                                        <option value="in">Inches (in)</option>
+                                        <option value="ft">Feet (ft)</option>
+                                        <option value="yd">Yards (yd)</option>
+                                        <option value="mi">Miles (mi)</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-calculate" data-action="convert-length">Convert</button>
+                                <div class="result" id="length-result"></div>
+                            </div>
+
+                            <div class="tool-section">
+                                <h4><i class="fas fa-weight-hanging"></i> Weight Conversion</h4>
+                                <div class="input-group">
+                                    <label>Value</label>
+                                    <input type="number" id="weight-value" placeholder="Enter value">
+                                </div>
+                                <div class="input-group">
+                                    <label>From</label>
+                                    <select id="weight-from">
+                                        <option value="mg">Milligrams (mg)</option>
+                                        <option value="g">Grams (g)</option>
+                                        <option value="kg">Kilograms (kg)</option>
+                                        <option value="oz">Ounces (oz)</option>
+                                        <option value="lb">Pounds (lb)</option>
+                                        <option value="ton">Tons (t)</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label>To</label>
+                                    <select id="weight-to">
+                                        <option value="mg">Milligrams (mg)</option>
+                                        <option value="g">Grams (g)</option>
+                                        <option value="kg">Kilograms (kg)</option>
+                                        <option value="oz">Ounces (oz)</option>
+                                        <option value="lb">Pounds (lb)</option>
+                                        <option value="ton">Tons (t)</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-calculate" data-action="convert-weight">Convert</button>
+                                <div class="result" id="weight-result"></div>
+                            </div>
+
+                            <div class="tool-section">
+                                <h4><i class="fas fa-thermometer-half"></i> Temperature Conversion</h4>
+                                <div class="input-group">
+                                    <label>Value</label>
+                                    <input type="number" id="temp-value" placeholder="Enter value">
+                                </div>
+                                <div class="input-group">
+                                    <label>From</label>
+                                    <select id="temp-from">
+                                        <option value="c">Celsius (°C)</option>
+                                        <option value="f">Fahrenheit (°F)</option>
+                                        <option value="k">Kelvin (K)</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label>To</label>
+                                    <select id="temp-to">
+                                        <option value="c">Celsius (°C)</option>
+                                        <option value="f">Fahrenheit (°F)</option>
+                                        <option value="k">Kelvin (K)</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-calculate" data-action="convert-temperature">Convert</button>
+                                <div class="result" id="temp-result"></div>
+                            </div>
+                        </div>
+
+                        <!-- Time Tab -->
+                        <div class="tools-tab-content" id="time-tab">
+                            <div class="tool-section">
+                                <h4><i class="fas fa-clock"></i> Time Calculator</h4>
+                                <div class="input-group">
+                                    <label>Hours</label>
+                                    <input type="number" id="time-hours" placeholder="Enter hours">
+                                </div>
+                                <div class="input-group">
+                                    <label>Minutes</label>
+                                    <input type="number" id="time-minutes" placeholder="Enter minutes">
+                                </div>
+                                <div class="input-group">
+                                    <label>Seconds</label>
+                                    <input type="number" id="time-seconds" placeholder="Enter seconds">
+                                </div>
+                                <button class="btn btn-calculate" data-action="calculate-time">Calculate Total</button>
+                                <div class="result" id="time-result"></div>
+                            </div>
+
+                            <div class="tool-section">
+                                <h4><i class="fas fa-calendar"></i> Age Calculator</h4>
+                                <div class="input-group">
+                                    <label>Birth Date</label>
+                                    <input type="date" id="birth-date">
+                                </div>
+                                <button class="btn btn-calculate" data-action="calculate-age">Calculate Age</button>
+                                <div class="result" id="age-result"></div>
+                            </div>
+
+                            <div class="tool-section">
+                                <h4><i class="fas fa-stopwatch"></i> Stopwatch</h4>
+                                <div class="stopwatch-display" id="stopwatch-display">00:00:00</div>
+                                <div class="stopwatch-controls">
+                                    <button class="btn btn-start" data-action="start-stopwatch">Start</button>
+                                    <button class="btn btn-pause" data-action="pause-stopwatch">Pause</button>
+                                    <button class="btn btn-reset" data-action="reset-stopwatch">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Panel -->
+            <div class="history-panel">
+                <div class="history-header">
+                    <h3><i class="fas fa-history"></i> History</h3>
+                    <button class="btn btn-clear-history" data-action="clear-history">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                <div class="history-list" id="historyList">
+                    <div class="history-empty">
+                        <i class="fas fa-calculator"></i>
+                        <p>No calculations yet</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- About Page -->
+            <div class="page" id="about-page">
+                <div class="about-content">
+                    <div class="about-header">
+                        <h2><i class="fas fa-graduation-cap"></i> About CalcSphere</h2>
+                        <p class="about-subtitle">Your Ultimate Student Calculator Companion</p>
+                    </div>
+                    
+                    <div class="about-grid">
+                        <div class="about-card purpose-card">
+                            <div class="card-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <h3>Purpose & Vision</h3>
+                            <p>CalcSphere is designed specifically for students who need reliable, accurate, and easy-to-use calculators for their academic journey. Whether you're solving basic arithmetic, tackling complex scientific equations, or working on programming problems, we've got you covered with our comprehensive suite of calculators.</p>
+                        </div>
+                        
+                        <div class="about-card features-card">
+                            <div class="card-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3>What Makes Us Special</h3>
+                            <ul>
+                                <li><i class="fas fa-check"></i> All-in-one calculator suite</li>
+                                <li><i class="fas fa-check"></i> Modern, intuitive interface</li>
+                                <li><i class="fas fa-check"></i> Real-time calculations</li>
+                                <li><i class="fas fa-check"></i> History tracking</li>
+                                <li><i class="fas fa-check"></i> Mobile-friendly design</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="about-card developer-card">
+                            <div class="developer-avatar">
+                                <div class="avatar-circle">
+                                    <i class="fas fa-user-graduate"></i>
+                                </div>
+                            </div>
+                            <h3>Meet the Developer</h3>
+                            <div class="developer-info">
+                                <h4>Pawan Negi</h4>
+                                <p class="developer-title">Student & Web Developer</p>
+                                <p class="developer-bio">As a student myself, I understand the challenges of finding reliable calculators for different subjects. That's why I created CalcSphere - to make learning and calculation easier and more accessible for students everywhere. My goal is to help you focus on learning rather than struggling with complex calculator interfaces.</p>
+                            </div>
+                            <div class="developer-stats">
+                                <div class="stat">
+                                    <span class="stat-number">6</span>
+                                    <span class="stat-label">Calculator Types</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">50+</span>
+                                    <span class="stat-label">Functions</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">100%</span>
+                                    <span class="stat-label">Free</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-footer">
+                        <div class="mission-statement">
+                            <h3><i class="fas fa-heart"></i> Our Mission</h3>
+                            <p>To empower students with powerful, accessible, and beautiful calculation tools that make learning mathematics, science, and programming more enjoyable and efficient. We believe that great tools should be free, easy to use, and available to everyone.</p>
+                        </div>
+                        
+                        <div class="contact-info">
+                            <h4>Get in Touch</h4>
+                            <p>Have feedback, suggestions, or found a bug? We'd love to hear from you!</p>
+                            <div class="contact-buttons">
+                                <button class="contact-btn" onclick="window.open('mailto:pawan@calcsphere.com', '_blank')">
+                                    <i class="fas fa-envelope"></i> Contact Us
+                                </button>
+                                <button class="contact-btn" onclick="window.open('https://github.com/pawannegi', '_blank')">
+                                    <i class="fab fa-github"></i> GitHub
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
