@@ -2,10 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CalcSphere - Modern Calculator Suite</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="CalQuora is a free, modern calculator suite for students. Includes basic, scientific, programmer, finance, advanced, and tool calculators. Fast, mobile-friendly, and easy to use.">
+    <meta name="keywords" content="calculator, student calculator, scientific calculator, programmer calculator, finance calculator, math tools, free calculator, responsive calculator, online calculator, education, study tools">
+    <meta name="author" content="Pawan Negi">
+    <meta name="theme-color" content="#3b82f6">
+    <link rel="canonical" href="https://calquora.com/">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="CalQuora - Modern Calculator Suite">
+    <meta property="og:description" content="Free, fast, and mobile-friendly calculator suite for students. Includes basic, scientific, programmer, finance, advanced, and tool calculators.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://calquora.com/">
+    <meta property="og:image" content="https://calquora.com/image/picture.jpg">
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CalQuora - Modern Calculator Suite">
+    <meta name="twitter:description" content="Free, fast, and mobile-friendly calculator suite for students. Includes basic, scientific, programmer, finance, advanced, and tool calculators.">
+    <meta name="twitter:image" content="https://calquora.com/image/picture.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/jpeg" href="image/favicon.jpg">
+    <title>CalQuora - Modern Calculator Suite</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -28,7 +49,7 @@
                     </div>
                 </div>
                 <div class="logo-text">
-                    <h1>Calc<span class="logo-accent">Sphere</span></h1>
+                    <h1>Cal<span class="logo-accent">Quora</span></h1>
                     <div class="logo-subtitle">Modern Calculator Suite</div>
                 </div>
             </div>
@@ -40,6 +61,10 @@
                 <button class="nav-btn" data-page="about">
                     <i class="fas fa-info-circle"></i>
                     <span>About</span>
+                </button>
+                <button class="nav-btn" data-page="support">
+                    <i class="fas fa-heart"></i>
+                    <span>Support</span>
                 </button>
                 <button id="themeToggle" class="theme-toggle" title="Toggle theme">
                     <i class="fas fa-moon"></i>
@@ -78,12 +103,13 @@
 
                 <div class="calculator-container">
                     <div class="calculator">
-                        <div class="display-container">
-                            <div class="display" id="display">0</div>
-                            <div class="expression" id="expression"></div>
-                        </div>
+                        <!-- Display bar moved inside panels where needed -->
 
                         <div class="calc-panel active" id="basic-calc">
+                            <div class="display-container">
+                                <div class="display" id="display">0</div>
+                                <div class="expression" id="expression"></div>
+                            </div>
                             <div class="button-grid">
                                 <button class="btn btn-function" data-action="clear">C</button>
                                 <button class="btn btn-function" data-action="clear-entry">CE</button>
@@ -114,6 +140,10 @@
                         </div>
 
                         <div class="calc-panel" id="scientific-calc">
+                            <div class="display-container">
+                                <div class="display" id="display">0</div>
+                                <div class="expression" id="expression"></div>
+                            </div>
                             <div class="button-grid scientific">
                                 <button class="btn btn-function" data-action="clear">C</button>
                                 <button class="btn btn-function" data-action="clear-entry">CE</button>
@@ -165,6 +195,10 @@
                         </div>
 
                         <div class="calc-panel" id="programmer-calc">
+                            <div class="display-container">
+                                <div class="display" id="display">0</div>
+                                <div class="expression" id="expression"></div>
+                            </div>
                             <div class="number-base-selector">
                                 <button class="base-btn active" data-base="dec">DEC</button>
                                 <button class="base-btn" data-base="hex">HEX</button>
@@ -226,6 +260,13 @@
                             <div class="finance-content">
                                 <div class="finance-tab-content active" id="loan-tab">
                                     <div class="input-group">
+                                        <label>Currency</label>
+                                        <select id="loan-currency">
+                                            <option value="USD">US Dollar ($)</option>
+                                            <option value="INR">Indian Rupee (₹)</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
                                         <label>Principal Amount ($)</label>
                                         <input type="number" id="principal" placeholder="Enter principal">
                                     </div>
@@ -242,6 +283,13 @@
                                 </div>
                                 
                                 <div class="finance-tab-content" id="investment-tab">
+                                    <div class="input-group">
+                                        <label>Currency</label>
+                                        <select id="investment-currency">
+                                            <option value="USD">US Dollar ($)</option>
+                                            <option value="INR">Indian Rupee (₹)</option>
+                                        </select>
+                                    </div>
                                     <div class="input-group">
                                         <label>Initial Investment ($)</label>
                                         <input type="number" id="initial-investment" placeholder="Enter amount">
@@ -263,6 +311,13 @@
                                 </div>
                                 
                                 <div class="finance-tab-content" id="compound-tab">
+                                    <div class="input-group">
+                                        <label>Currency</label>
+                                        <select id="compound-currency">
+                                            <option value="USD">US Dollar ($)</option>
+                                            <option value="INR">Indian Rupee (₹)</option>
+                                        </select>
+                                    </div>
                                     <div class="input-group">
                                         <label>Principal ($)</label>
                                         <input type="number" id="compound-principal" placeholder="Enter principal">
@@ -353,9 +408,42 @@
                                 <button class="tools-tab" data-tab="health">Health</button>
                                 <button class="tools-tab" data-tab="conversion">Conversion</button>
                                 <button class="tools-tab" data-tab="time">Time</button>
+                                <button class="tools-tab" data-tab="currency">Currency</button>
+                            <!-- ...existing code... -->
                             </div>
                             
                             <div class="tools-content">
+                                <div class="tools-tab-content" id="currency-tab">
+                                    <div class="tool-section">
+                                        <h4><i class="fas fa-exchange-alt"></i> Currency</h4>
+                                        <div class="input-group">
+                                            <label>Amount</label>
+                                            <input type="number" id="currency-amount" placeholder="Enter amount">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>From</label>
+                                            <select id="currency-from">
+                                                <option value="USD">US Dollar ($)</option>
+                                                <option value="INR">Indian Rupee (₹)</option>
+                                                <option value="EUR">Euro (€)</option>
+                                                <option value="GBP">British Pound (£)</option>
+                                                <option value="JPY">Japanese Yen (¥)</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group">
+                                            <label>To</label>
+                                            <select id="currency-to">
+                                                <option value="USD">US Dollar ($)</option>
+                                                <option value="INR">Indian Rupee (₹)</option>
+                                                <option value="EUR">Euro (€)</option>
+                                                <option value="GBP">British Pound (£)</option>
+                                                <option value="JPY">Japanese Yen (¥)</option>
+                                            </select>
+                                        </div>
+                                        <button class="btn btn-calculate" id="currency-convert-btn">Convert</button>
+                                        <div class="result" id="currency-result"></div>
+                                    </div>
+                                </div>
                                 <div class="tools-tab-content active" id="geometry-tab">
                                     <div class="tool-section">
                                         <h4><i class="fas fa-square"></i> Rectangle</h4>
@@ -607,8 +695,37 @@
                                     </div>
 
                                     <div class="tool-section">
+                                        <h4><i class="fas fa-exchange-alt"></i> Currency Converter</h4>
+                                        <div class="input-group">
+                                            <label>Amount</label>
+                                            <input type="number" id="currency-amount" placeholder="Enter amount">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>From</label>
+                                            <select id="currency-from">
+                                                <option value="USD">US Dollar ($)</option>
+                                                <option value="INR">Indian Rupee (₹)</option>
+                                                <option value="EUR">Euro (€)</option>
+                                                <option value="GBP">British Pound (£)</option>
+                                                <option value="JPY">Japanese Yen (¥)</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group">
+                                            <label>To</label>
+                                            <select id="currency-to">
+                                                <option value="USD">US Dollar ($)</option>
+                                                <option value="INR">Indian Rupee (₹)</option>
+                                                <option value="EUR">Euro (€)</option>
+                                                <option value="GBP">British Pound (£)</option>
+                                                <option value="JPY">Japanese Yen (¥)</option>
+                                            </select>
+                                        </div>
+                                        <button class="btn btn-calculate" id="currency-convert-btn">Convert</button>
+                                        <div class="result" id="currency-result"></div>
+                                    </div>
+                                    <div class="tool-section">
                                         <h4><i class="fas fa-stopwatch"></i> Stopwatch</h4>
-                                        <div class="stopwatch-display" id="stopwatch-display">00:00:00.00</div>
+                                        <div class="stopwatch-display" id="stopwatch-display">00:00:00</div>
                                         <div class="stopwatch-controls">
                                             <button class="btn btn-start" data-action="start-stopwatch">Start</button>
                                             <button class="btn btn-pause" data-action="pause-stopwatch">Pause</button>
@@ -635,12 +752,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
 
             <div class="page" id="about-page">
                 <div class="about-content">
                     <div class="about-header">
-                        <h2><i class="fas fa-graduation-cap"></i> About CalcSphere</h2>
+                        <h2><i class="fas fa-graduation-cap"></i> About CalQuora</h2>
                         <p class="about-subtitle">Your Ultimate Student Calculator Companion</p>
                     </div>
                     
@@ -650,7 +767,7 @@
                                 <i class="fas fa-calculator"></i>
                             </div>
                             <h3>Purpose & Vision</h3>
-                            <p>CalcSphere is designed specifically for students who need reliable, accurate, and easy-to-use calculators for their academic journey. Whether you're solving basic arithmetic, tackling complex scientific equations, or working on programming problems, we've got you covered with our comprehensive suite of calculators.</p>
+                            <p>CalQuora is designed specifically for students who need reliable, accurate, and easy-to-use calculators for their academic journey. Whether you're solving basic arithmetic, tackling complex scientific equations, or working on programming problems, we've got you covered with our comprehensive suite of calculators.</p>
                         </div>
                         
                         <div class="about-card features-card">
@@ -670,20 +787,31 @@
                         <div class="about-card developer-card">
                             <div class="developer-avatar">
                                 <div class="avatar-circle">
-                                    <img src="image/picture.jpg" alt="Developer Picture">
-                                </div>
+                                    </div>
                             </div>
                             <h3>Meet the Developer</h3>
                             <div class="developer-info">
                                 <h4>Pawan Negi</h4>
                                 <p class="developer-title">Student & Web Developer</p>
-                                <p class="developer-bio">As a student myself, I understand the challenges of finding reliable calculators for different subjects. That's why I created CalcSphere - to make learning and calculation easier and more accessible for students everywhere. My goal is to help you focus on learning rather than struggling with complex calculator interfaces.</p>
-                            </div>
-                            <div class="developer-stats">
-                                <div class="stat">
-                                    <span class="stat-number">6</span>
-                                    <span class="stat-label">Calculator Types</span>
+                                <p class="developer-bio">As a student myself, I understand the challenges of finding reliable calculators for different subjects. That's why I created CalQuora - to make learning and calculation easier and more accessible for students everywhere. My goal is to help you focus on learning rather than struggling with complex calculator interfaces.</p>
+                                <div class="developer-extra">
+                                    <h4>Calculator Types & Functions</h4>
+                                    <ul>
+                                        <li><b>Basic:</b> Arithmetic operations, memory functions</li>
+                                        <li><b>Scientific:</b> Trigonometry, logarithms, powers, roots, factorials</li>
+                                        <li><b>Programmer:</b> Base conversions, bitwise operations, modulo, shifts</li>
+                                        <li><b>Finance:</b> Loan, investment, compound interest calculators</li>
+                                        <li><b>Advanced:</b> Integration, derivatives, limits, summations</li>
+                                        <li><b>Tools:</b> Geometry, health, conversions, time, age, stopwatch</li>
+                                    </ul>
+                                    <p>With over 50+ functions, CalQuora is designed to meet every student's calculation needs.</p>
                                 </div>
+                            </div>
+                                <div class="developer-stats">
+                                    <div class="stat">
+                                        <span class="stat-number">10+</span>
+                                        <span class="stat-label">Calculator Types</span>
+                                    </div>
                                 <div class="stat">
                                     <span class="stat-number">50+</span>
                                     <span class="stat-label">Functions</span>
@@ -701,17 +829,73 @@
                             <h3><i class="fas fa-heart"></i> Our Mission</h3>
                             <p>To empower students with powerful, accessible, and beautiful calculation tools that make learning mathematics, science, and programming more enjoyable and efficient. We believe that great tools should be free, easy to use, and available to everyone.</p>
                         </div>
-                        
+                        <div class="copyright-notice" style="margin-top:2rem; font-size:0.9em; color:var(--text-muted);">
+                            <strong>Copyright &copy; 2025 Pawan Negi. All rights reserved.</strong><br>
+                            Unauthorized copying, distribution, or modification of any part of CalQuora is strictly prohibited. Violators will be prosecuted to the fullest extent of the law.
+                        </div>
                         <div class="contact-info">
                             <h4>Get in Touch</h4>
                             <p>Have feedback, suggestions, or found a bug? We'd love to hear from you!</p>
                             <div class="contact-buttons">
-                                <button class="contact-btn" onclick="window.open('mailto:pawan@calcsphere.com', '_blank')">
+                                <a href="mailto:connect.calquora@gmail.com" class="contact-btn">
                                     <i class="fas fa-envelope"></i> Contact Us
-                                </button>
-                                <button class="contact-btn" onclick="window.open('https://github.com/pawannegi', '_blank')">
-                                    <i class="fab fa-github"></i> GitHub
-                                </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" id="support-page">
+                <div class="support-content">
+                    <div class="support-header">
+                        <h2><i class="fas fa-heart"></i> Support CalQuora</h2>
+                        <p class="support-subtitle">Help us keep CalQuora free and improve it for everyone</p>
+                    </div>
+                    
+                    <div class="support-grid">
+                        <div class="support-card message-card">
+                            <div class="card-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h3>We Appreciate Your Support!</h3>
+                            <p>CalQuora is developed with love by a student developer who believes in making quality educational tools accessible to everyone. Your support helps us:</p>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Keep the application completely free</li>
+                                <li><i class="fas fa-check"></i> Add new features and improvements</li>
+                                <li><i class="fas fa-check"></i> Maintain server costs and hosting</li>
+                                <li><i class="fas fa-check"></i> Continue development and updates</li>
+                            </ul>
+                            <p class="support-note">Every contribution, no matter how small, makes a big difference in helping us serve the student community better.</p>
+                        </div>
+                        
+                        <div class="support-card payment-card">
+                            <div class="card-icon">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                            <h3>Support via Payment</h3>
+                            <p>Scan the QR code below to make a contribution:</p>
+                            <div class="qr-container">
+                                <img src="image/paymentsupport.jpg" alt="Support CalQuora via QR code payment" class="payment-qr" loading="lazy">
+                            </div>
+                            <p class="payment-note">Thank you for supporting CalQuora! 🙏</p>
+                        </div>
+                    </div>
+                    
+                    <div class="support-footer">
+                        <div class="contact-support">
+                            <h4><i class="fas fa-envelope"></i> Other Ways to Support</h4>
+                            <p>You can also help us by:</p>
+                            <ul>
+                                <li><i class="fas fa-star"></i> Sharing CalQuora with friends and classmates</li>
+                                <li><i class="fas fa-bug"></i> Reporting bugs or suggesting improvements</li>
+                                <li><i class="fas fa-thumbs-up"></i> Providing feedback on your experience</li>
+                            </ul>
+                            <div class="contact-info">
+                                <p>Have questions or feedback? We'd love to hear from you!</p>
+                                <a href="mailto:connect.calquora@gmail.com" class="contact-btn">
+                                    <i class="fas fa-envelope"></i> Contact Us
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -720,6 +904,18 @@
         </main>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
+    <!-- Terms and Conditions Section -->
+    <section class="terms-section" style="width:100%;text-align:center;margin-top:2rem;">
+        <div style="font-size:0.8em;color:var(--text-muted);max-width:700px;margin:0 auto;">
+            <h4 style="font-size:1em;margin-bottom:0.5em;">Terms and Conditions</h4>
+            <p>By using CalQuora, you agree to use the application for lawful, educational, and personal purposes only. The developer is not responsible for any misuse, data loss, or inaccuracies in calculations. All content and code are protected by copyright. Redistribution, reverse engineering, or commercial use is strictly prohibited without written permission from the developer.</p>
+        </div>
+    </section>
+    <!-- Bottom Bar -->
+    <footer class="bottom-bar" style="width:100%;background:var(--bg-tertiary);color:var(--accent-primary);text-align:center;padding:0.5em 0;font-size:1em;position:fixed;bottom:0;left:0;z-index:999;">
+    Made with <span style="color:red;">&#10084;&#65039;</span> by Pawan Negi | <a href="https://calquora.com/" style="color:inherit;text-decoration:underline;">CalQuora.com</a>
+    <button id="closeLoveBar" style="margin-left:1em;padding:0.2em 0.7em;font-size:1.2em;border:none;background:transparent;color:var(--accent-primary);border-radius:50%;cursor:pointer;vertical-align:middle;">&times;</button>
+    </footer>
 </body>
 </html>
