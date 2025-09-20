@@ -1,73 +1,4 @@
-// CalcSphere - Modern Calculator Suite
-// Main Calculator Class
-class CalcSphere {
-    constructor() {
-        this.currentValue = '0';
-        this.previousValue = null;
-        this.operator = null;
-        this.waitingForOperand = false;
-        this.currentBase = 'dec';
-        this.history = JSON.parse(localStorage.getItem('calcHistory')) || [];
-        this.currentTheme = localStorage.getItem('calcTheme') || 'light';
-        
-        this.initializeElements();
-        this.bindEvents();
-        this.loadTheme();
-        this.updateDisplay();
-        this.updateHistory();
-    }
-
-    initializeElements() {
-        // Display elements
-        this.display = document.getElementById('display');
-        this.expression = document.getElementById('expression');
-        
-        // Calculator panels
-        this.calcPanels = document.querySelectorAll('.calc-panel');
-        this.calcTypeBtns = document.querySelectorAll('.calc-type-btn');
-        
-        // History elements
-        this.historyList = document.getElementById('historyList');
-        
-        // Theme elements
-        this.themeToggle = document.getElementById('themeToggle');
-        
-        // Navigation elements
-        this.navBtns = document.querySelectorAll('.nav-btn');
-        this.pages = document.querySelectorAll('.page');
-        
-        // Finance calculator elements
-        this.financeTabs = document.querySelectorAll('.finance-tab');
-        this.financeTabContents = document.querySelectorAll('.finance-tab-content');
-        
-        // Tools calculator elements
-        this.toolsTabs = document.querySelectorAll('.tools-tab');
-        this.toolsTabContents = document.querySelectorAll('.tools-tab-content');
-        
-        // Number base selector (programmer)
-        this.baseBtns = document.querySelectorAll('.base-btn');
-        
-        // Stopwatch variables
-        this.stopwatchInterval = null;
-        this.stopwatchTime = 0;
-        this.stopwatchRunning = false;
-        
-        // Switching state
-        this.switching = false;
-    }
-
-    bindEvents() {
-        // Calculator type switching
-        this.calcTypeBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                const type = e.target.closest('.calc-type-btn').dataset.type;
-                if (type) {
-                    this.switchCalculatorType(type);
-                }
-            });
-        });
+class CalQuora{bindCurrencyConverter(){const c=document.getElementById('currency-convert-btn');if(!c)return;c.addEventListener('click',async()=>{const a=parseFloat(document.getElementById('currency-amount').value),f=document.getElementById('currency-from').value,t=document.getElementById('currency-to').value,r=document.getElementById('currency-result');if(!a||!f||!t){r.textContent='Please fill in all fields.';return}r.textContent='Fetching latest rates...';try{const e=await fetch(`https://open.er-api.com/v6/latest/${f}`),d=await e.json();if(d.result==='success'&&d.rates[t]){const s=d.rates[t],v=a*s;r.textContent=`${a} ${f} = ${v.toFixed(2)} ${t}`}else r.textContent='Conversion failed. Try again.'}catch{r.textContent='Error fetching rates.'}})}constructor(){this.currentValue='0';this.previousValue=null;this.operator=null;this.waitingForOperand=false;this.currentBase='dec';this.history=JSON.parse(localStorage.getItem('calcHistory'))||[];this.currentTheme=localStorage.getItem('calcTheme')||'light';this.initializeElements();this.bindEvents();this.bindCurrencyConverter();this.loadTheme();this.updateDisplay();this.updateHistory()}initializeElements(){this.display=document.getElementById('display');this.expression=document.getElementById('expression');this.calcPanels=document.querySelectorAll('.calc-panel');this.calcTypeBtns=document.querySelectorAll('.calc-type-btn');this.historyList=document.getElementById('historyList');this.themeToggle=document.getElementById('themeToggle');this.navBtns=document.querySelectorAll('.nav-btn');this.pages=document.querySelectorAll('.page');this.financeTabs=document.querySelectorAll('.finance-tab');this.financeTabContents=document.querySelectorAll('.finance-tab-content');this.toolsTabs=document.querySelectorAll('.tools-tab');this.toolsTabContents=document.querySelectorAll('.tools-tab-content');this.baseBtns=document.querySelectorAll('.base-btn');this.stopwatchInterval=null;this.stopwatchTime=0;this.stopwatchRunning=false;this.switching=false}bindEvents(){this.calcTypeBtns.forEach(b=>{b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();const t=e.target.closest('.calc-type-btn').dataset.type;if(t)this.switchCalculatorType(t)})})
 
         // Button clicks
         document.addEventListener('click', (e) => {
@@ -85,6 +16,9 @@ class CalcSphere {
                 const page = e.target.closest('.nav-btn').dataset.page;
                 if (page) {
                     this.switchPage(page);
+                    if (page === 'home') {
+                        this.switchCalculatorType('basic');
+                    }
                 }
             });
         });
@@ -96,8 +30,26 @@ class CalcSphere {
 
         // Tools tabs
         this.toolsTabs.forEach(tab => {
-            tab.addEventListener('click', (e) => this.switchToolsTab(e.target.dataset.tab));
+            tab.addEventListener('click', (e) => {
+                const tabName = e.target.dataset.tab;
+                this.toolsTabs.forEach(t => t.classList.remove('active'));
+                e.target.classList.add('active');
+                this.toolsTabContents.forEach(c => c.classList.remove('active'));
+                const targetTab = document.getElementById(tabName + '-tab');
+                if (targetTab) {
+                    targetTab.classList.add('active');
+                }
+            });
         });
+
+            // Close 'Made with love' bar (not persistent)
+            const loveBar = document.querySelector('.bottom-bar');
+            const closeBtn = document.getElementById('closeLoveBar');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    if (loveBar) loveBar.style.display = 'none';
+                });
+            }
 
         // Number base switching
         this.baseBtns.forEach(btn => {
@@ -193,10 +145,10 @@ class CalcSphere {
         button.classList.add('bounce');
         setTimeout(() => button.classList.remove('bounce'), 500);
 
-        // Check if we're in tools calculator mode
+        // Check if we're in tools or finance calculator mode
         const currentPanel = document.querySelector('.calc-panel.active');
-        if (currentPanel && currentPanel.id === 'tools-calc') {
-            // For tools calculator, only handle action buttons, not number inputs
+        if (currentPanel && (currentPanel.id === 'tools-calc' || currentPanel.id === 'finance-calc')) {
+            // For tools/finance calculator, only handle action buttons, not number inputs
             if (action) {
                 this.handleAction(action);
             }
@@ -211,19 +163,19 @@ class CalcSphere {
     }
 
     handleKeyboard(e) {
-        // Check if we're in tools calculator mode
+        // Check if we're in tools or finance calculator mode
         const currentPanel = document.querySelector('.calc-panel.active');
-        if (currentPanel && currentPanel.id === 'tools-calc') {
-            // Don't prevent default for tools calculator - let normal input work
+        if (currentPanel && (currentPanel.id === 'tools-calc' || currentPanel.id === 'finance-calc')) {
+            // Don't prevent default for tools/finance calculator - let normal input work
             return;
         }
 
         e.preventDefault();
-        
+
         const key = e.key;
         const button = document.querySelector(`[data-number="${key}"]`) ||
                       document.querySelector(`[data-action="${this.getActionFromKey(key)}"]`);
-        
+
         if (button) {
             button.click();
         }
@@ -603,6 +555,8 @@ class CalcSphere {
         const principal = parseFloat(document.getElementById('principal').value);
         const rate = parseFloat(document.getElementById('interest-rate').value);
         const term = parseFloat(document.getElementById('loan-term').value);
+        const currency = document.getElementById('loan-currency').value;
+        const usdToInr = 83;
 
         if (!principal || !rate || !term) {
             this.showError('Please fill in all fields');
@@ -611,14 +565,17 @@ class CalcSphere {
 
         const monthlyRate = rate / 100 / 12;
         const numPayments = term * 12;
-        const monthlyPayment = (principal * monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / 
+        const monthlyPayment = (principal * monthlyRate * Math.pow(1 + monthlyRate, numPayments)) /
                               (Math.pow(1 + monthlyRate, numPayments) - 1);
         const totalPayment = monthlyPayment * numPayments;
         const totalInterest = totalPayment - principal;
 
-        const result = `Monthly Payment: $${monthlyPayment.toFixed(2)}
-Total Payment: $${totalPayment.toFixed(2)}
-Total Interest: $${totalInterest.toFixed(2)}`;
+        let result = '';
+        if (currency === 'USD') {
+            result = `Monthly Payment: $${monthlyPayment.toFixed(2)} / ₹${(monthlyPayment * usdToInr).toFixed(2)}\nTotal Payment: $${totalPayment.toFixed(2)} / ₹${(totalPayment * usdToInr).toFixed(2)}\nTotal Interest: $${totalInterest.toFixed(2)} / ₹${(totalInterest * usdToInr).toFixed(2)}`;
+        } else {
+            result = `Monthly Payment: ₹${(monthlyPayment * usdToInr).toFixed(2)} / $${monthlyPayment.toFixed(2)}\nTotal Payment: ₹${(totalPayment * usdToInr).toFixed(2)} / $${totalPayment.toFixed(2)}\nTotal Interest: ₹${(totalInterest * usdToInr).toFixed(2)} / $${totalInterest.toFixed(2)}`;
+        }
 
         document.getElementById('loan-result').textContent = result;
     }
@@ -628,6 +585,8 @@ Total Interest: $${totalInterest.toFixed(2)}`;
         const monthly = parseFloat(document.getElementById('monthly-contribution').value);
         const rate = parseFloat(document.getElementById('expected-return').value);
         const years = parseFloat(document.getElementById('investment-period').value);
+        const currency = document.getElementById('investment-currency').value;
+        const usdToInr = 83;
 
         if (!initial || !monthly || !rate || !years) {
             this.showError('Please fill in all fields');
@@ -636,20 +595,20 @@ Total Interest: $${totalInterest.toFixed(2)}`;
 
         const monthlyRate = rate / 100 / 12;
         const numMonths = years * 12;
-        
         // Future value of initial investment
         const futureValueInitial = initial * Math.pow(1 + monthlyRate, numMonths);
-        
         // Future value of monthly contributions
         const futureValueMonthly = monthly * ((Math.pow(1 + monthlyRate, numMonths) - 1) / monthlyRate);
-        
         const totalValue = futureValueInitial + futureValueMonthly;
         const totalContributions = initial + (monthly * numMonths);
         const totalGains = totalValue - totalContributions;
 
-        const result = `Future Value: $${totalValue.toFixed(2)}
-Total Contributions: $${totalContributions.toFixed(2)}
-Total Gains: $${totalGains.toFixed(2)}`;
+        let result = '';
+        if (currency === 'USD') {
+            result = `Future Value: $${totalValue.toFixed(2)} / ₹${(totalValue * usdToInr).toFixed(2)}\nTotal Contributions: $${totalContributions.toFixed(2)} / ₹${(totalContributions * usdToInr).toFixed(2)}\nTotal Gains: $${totalGains.toFixed(2)} / ₹${(totalGains * usdToInr).toFixed(2)}`;
+        } else {
+            result = `Future Value: ₹${(totalValue * usdToInr).toFixed(2)} / $${totalValue.toFixed(2)}\nTotal Contributions: ₹${(totalContributions * usdToInr).toFixed(2)} / $${totalContributions.toFixed(2)}\nTotal Gains: ₹${(totalGains * usdToInr).toFixed(2)} / $${totalGains.toFixed(2)}`;
+        }
 
         document.getElementById('investment-result').textContent = result;
     }
@@ -659,6 +618,8 @@ Total Gains: $${totalGains.toFixed(2)}`;
         const rate = parseFloat(document.getElementById('compound-rate').value);
         const time = parseFloat(document.getElementById('compound-time').value);
         const frequency = parseInt(document.getElementById('compound-frequency').value);
+        const currency = document.getElementById('compound-currency').value;
+        const usdToInr = 83;
 
         if (!principal || !rate || !time) {
             this.showError('Please fill in all fields');
@@ -668,9 +629,12 @@ Total Gains: $${totalGains.toFixed(2)}`;
         const amount = principal * Math.pow(1 + (rate / 100) / frequency, frequency * time);
         const interest = amount - principal;
 
-        const result = `Final Amount: $${amount.toFixed(2)}
-Interest Earned: $${interest.toFixed(2)}
-Principal: $${principal.toFixed(2)}`;
+        let result = '';
+        if (currency === 'USD') {
+            result = `Final Amount: $${amount.toFixed(2)} / ₹${(amount * usdToInr).toFixed(2)}\nInterest Earned: $${interest.toFixed(2)} / ₹${(interest * usdToInr).toFixed(2)}\nPrincipal: $${principal.toFixed(2)} / ₹${(principal * usdToInr).toFixed(2)}`;
+        } else {
+            result = `Final Amount: ₹${(amount * usdToInr).toFixed(2)} / $${amount.toFixed(2)}\nInterest Earned: ₹${(interest * usdToInr).toFixed(2)} / $${interest.toFixed(2)}\nPrincipal: ₹${(principal * usdToInr).toFixed(2)} / $${principal.toFixed(2)}`;
+        }
 
         document.getElementById('compound-result').textContent = result;
     }
@@ -1167,7 +1131,7 @@ ${daysDiff} days`;
 
 // Initialize the calculator when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    new CalcSphere();
+    new CalQuora();
 });
 
 // Add some utility functions for advanced calculations
