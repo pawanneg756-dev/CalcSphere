@@ -737,14 +737,29 @@ class CalQuora{bindCurrencyConverter(){const c=document.getElementById('currency
     }
 
     updateDisplay() {
-        this.display.textContent = this.currentValue;
+        const currentPanel = document.querySelector('.calc-panel.active');
+        const programmerDisplay = document.getElementById('programmer-display');
+        const advancedDisplay = document.getElementById('advanced-display');
+        if (currentPanel && currentPanel.id === 'programmer-calc' && programmerDisplay) {
+            programmerDisplay.textContent = this.currentValue;
+        } else if (currentPanel && currentPanel.id === 'advanced-calc' && advancedDisplay) {
+            advancedDisplay.textContent = this.currentValue;
+        } else if (this.display) {
+            this.display.textContent = this.currentValue;
+        }
     }
 
     updateExpression() {
-        if (this.previousValue && this.operator) {
-            this.expression.textContent = `${this.previousValue} ${this.getOperatorSymbol(this.operator)}`;
-        } else {
-            this.expression.textContent = '';
+        const currentPanel = document.querySelector('.calc-panel.active');
+        const programmerExpression = document.getElementById('programmer-expression');
+        const advancedExpression = document.getElementById('advanced-expression');
+        const exprText = (this.previousValue && this.operator) ? `${this.previousValue} ${this.getOperatorSymbol(this.operator)}` : '';
+        if (currentPanel && currentPanel.id === 'programmer-calc' && programmerExpression) {
+            programmerExpression.textContent = exprText;
+        } else if (currentPanel && currentPanel.id === 'advanced-calc' && advancedExpression) {
+            advancedExpression.textContent = exprText;
+        } else if (this.expression) {
+            this.expression.textContent = exprText;
         }
     }
 
