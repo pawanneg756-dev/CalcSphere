@@ -1604,6 +1604,43 @@ body {
     .about-grid {
         display: flex;
         flex-direction: column;
+        .calculator-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .history-panel {
+            max-width: 100%;
+            margin-top: 1rem;
+        }
+        .calculator {
+            padding: 1rem;
+        }
+        .button-grid {
+            gap: 0.5rem;
+        }
+        .btn {
+            padding: 1rem;
+            font-size: 1.1rem;
+            min-width: 48px;
+            min-height: 48px;
+            border-radius: 1rem;
+        }
+        .display {
+            font-size: 1.7rem;
+        }
+        .display-container {
+            padding: 1rem;
+            min-height: 80px;
+        }
+        .about-card, .support-card {
+            border-radius: 1rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 1rem;
+        }
+        .about-header h2, .support-header h2 {
+            font-size: 2rem;
+        }
         gap: 1rem;
     }
     .bottom-bar {
@@ -1660,6 +1697,78 @@ body {
 
 /* Ensure bottom bar does not overlap content */
 .container {
+        .calculator-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .calculator {
+            padding: 0.5rem;
+            border-radius: 0.7rem;
+            box-shadow: var(--shadow-md);
+        }
+        .button-grid {
+            gap: 0.3rem;
+        }
+        .btn {
+            padding: 0.8rem;
+            font-size: 1rem;
+            min-width: 44px;
+            min-height: 44px;
+            border-radius: 0.7rem;
+        }
+        .display {
+            font-size: 1.2rem;
+        }
+        .display-container {
+            padding: 0.5rem;
+            min-height: 50px;
+            border-radius: 0.7rem;
+        }
+        .input-group input,
+        .input-group select {
+            padding: 0.5rem;
+            font-size: 0.95rem;
+            border-radius: 0.7rem;
+        }
+        .tools-content {
+            max-height: 300px;
+        }
+        .history-panel {
+            padding: 0.5rem;
+            border-radius: 0.7rem;
+            max-width: 100%;
+            margin-top: 0.5rem;
+            box-shadow: var(--shadow-md);
+        }
+        .history-header h3 {
+            font-size: 0.95rem;
+        }
+        .result {
+            padding: 0.5rem;
+            font-size: 0.95rem;
+            border-radius: 0.7rem;
+        }
+        .calc-type-btn {
+            min-width: 90px;
+            padding: 0.7rem 1rem;
+            border-radius: 0.7rem;
+            font-size: 0.95rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .main-content {
+            gap: 0.5rem;
+        }
+        .tools-tab, .finance-tab {
+            font-size: 0.95rem;
+            border-radius: 0.7rem 0.7rem 0 0;
+            padding: 0.5rem 0.7rem;
+        }
+        .tool-section {
+            padding: 0.7rem;
+            border-radius: 0.7rem;
+            box-shadow: var(--shadow-sm);
+        }
     padding-bottom: 2.5em;
 }
 
