@@ -1088,4 +1088,32 @@ body {
         font-size: 0.8em;
         padding: 0.4em 0;
     }
+
+    /* Additional mobile fixes */
+    .finance-tabs, .tools-tabs {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .finance-tab, .tools-tab {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.8rem;
+    }
+    .input-group input, .input-group select {
+        font-size: 1rem;
+    }
+    .result {
+        font-size: 1rem;
+    }
+    .about-card, .support-card {
+        padding: 1.5rem;
+    }
+    .developer-info h4 {
+        font-size: 1.5rem;
+    }
+    .stat-number {
+        font-size: 1.8rem;
+    }
+    .stat-label {
+        font-size: 0.8rem;
+    }
 }
